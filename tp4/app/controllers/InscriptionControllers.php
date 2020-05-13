@@ -20,9 +20,18 @@ class InscriptionControllers extends ControllerBase{
 
     }
 	public function do() {
+		
 		$Data = new inscription();
 		$Data->setEmail($_POST["email"]);
         $Data->setNom($_POST["pseudo"]);
-        DAO::insert($var);
-	}
+        DAO::insert($Data);
+	
+	
+	if(DAO::insert($Data)){
+            echo "Confirmé, redirection...";
+            UResponse::header("location" ,"inscriptionsController/do.html"); 
+        }
+        else{
+            echo "<div class='ui red message'><p>Votre inscription avec l'email " . $_POST["email"] . " n'a pas fonctionnée</p><a href='/inscriptionsControllers'>Retour à l'accueil</a></div>";
+	}}
 }
