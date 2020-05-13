@@ -1,5 +1,11 @@
 <?php
 namespace controllers;
+
+use Ubiquity\orm\DAO;
+use Ubiquity\utils\http\URequest;
+use Ubiquity\utils\http\UResponse;
+use Ubiquity\utils\http\USession;
+use models\inscription;
  /**
  * Controller InscriptionControllers
  **/
@@ -13,4 +19,10 @@ class InscriptionControllers extends ControllerBase{
         $this->loadView('InscriptionControllers/inscription.html');
 
     }
+	public function do() {
+		$Data = new inscription();
+		$Data->setEmail($_POST["email"]);
+        $Data->setNom($_POST["pseudo"]);
+        DAO::insert($var);
+	}
 }
